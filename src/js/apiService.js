@@ -29,13 +29,11 @@ export default {
       .then(res => res.json())
       .then(({ hits }) => {
         this.incrementPage();
-        // toastr['success']('Успешный результат запроса');
 
         return hits;
       })
       .catch(error => {
         toastr['error'](`${error.stack}`);
-        console.dir(error);
       });
   },
   resetPage() {

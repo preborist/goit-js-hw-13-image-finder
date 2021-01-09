@@ -2,8 +2,6 @@ import imagesTpl from '../templates/imagesTpl.hbs';
 import refs from './refs';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
-const basicLightbox = require('basiclightbox');
-import 'basicLightbox/dist/basicLightbox.min.css';
 
 toastr.options = {
   closeButton: false,
@@ -25,19 +23,7 @@ toastr.options = {
 
 function updateGalleryMarkup(hits) {
   const markup = imagesTpl(hits);
-
   refs.galleryContainer.insertAdjacentHTML('beforeend', markup);
-  toastr['success']('Успешный результат запроса');
-
-  refs.galleryContainer.addEventListener('click', onImageClickHandler);
-  function onImageClickHandler(event) {
-    console.log(event.target.srcset);
-    const instance = basicLightbox.create(
-      `<img src=${event.target.srcset} width="800" height="600">`,
-    );
-    instance.show();
-  }
-  console.log(refs.galleryContainer);
 }
 
 export default updateGalleryMarkup;
